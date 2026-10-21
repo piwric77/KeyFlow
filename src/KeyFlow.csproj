@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+    <RootNamespace>KeyFlow</RootNamespace>
+    <AssemblyName>KeyFlow</AssemblyName>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseWinUI>true</UseWinUI>
+    <WindowsPackageType>None</WindowsPackageType>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <SelfContained>true</SelfContained>
+    <PublishTrimmed>false</PublishTrimmed>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>
+    <StartupObject>KeyFlow.Program</StartupObject>
+    <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
+    <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
+    <ApplicationDefinition Include="App.xaml" />
+    <Page Remove="App.xaml" />
+    <Page Remove="MainView.xaml" />
+    <Content Include="MainView.xaml" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  <Target Name="IncludeNativeXamlResources" AfterTargets="ComputeFilesToPublish">
+    <ItemGroup>
+      <ResolvedFileToPublish Include="$(OutputPath)$(AssemblyName).pri" RelativePath="$(AssemblyName).pri" CopyToPublishDirectory="PreserveNewest" />
+      <ResolvedFileToPublish Include="$(OutputPath)App.xbf" RelativePath="App.xbf" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+  </Target>
+</Project>
