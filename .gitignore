@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+publish/
+artifacts/
+*.user
+*.suo
+*.log
+settings.json
+settings.json.bak
+test-startup/
+preview-*.png
+*-test.txt
+ThirdPartyNotices/
